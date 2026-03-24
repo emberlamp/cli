@@ -15,7 +15,13 @@ get_repos() {
         echo "general react-template swe-agent gh-pin-repo config cli license warnings json-repo gitkeep .github"
         return
     fi
-    echo "$raw" | grep -o '"[^"]*"' | tr -d '"' | grep -v repos | grep -v org
+    # Use curl to get and parse with jq if available, otherwise simple parse
+    if command -v jq &> /dev/null; then
+        echo "$raw" | jq -r '.repos[]'
+    else
+        # Simple JSON parsing without jq
+        echo "$raw" | sed 's/.*"repos":\s*\[\([^]]*\)\].*/\1/' | tr ',' '\n' | tr -d ' "'
+    fi
 }
 
 REPOS=($(get_repos))
