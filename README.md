@@ -2,6 +2,14 @@
 
 Master CLI to control all Emberlamp repositories.
 
+## Dynamic Repository Management
+
+The CLI fetches the list of repositories dynamically from [emberlamp/config](https://github.com/emberlamp/config) → `repos.json`. This means you don't need to update the CLI when adding new repos - just update the JSON file!
+
+### To add new repos:
+1. Update [repos.json](https://github.com/emberlamp/config/blob/main/repos.json) in the config repo
+2. All emberlamp CLI commands will automatically use the updated list
+
 ## Installation
 
 ```bash
@@ -69,14 +77,18 @@ emberlamp exec "git add -A && git commit -m 'chore: add test file' && git push"
 
 ## Repositories Managed
 
-- general - Main app
-- react-template - React template
-- swe-agent - SWE agent template
-- gh-pin-repo - Pin repo extension
-- config - Config extension
-- cli - Master CLI
-- license - Shared license
-- warnings - Warning messages
-- json-repo - JSON schemas
-- gitkeep - Placeholder
-- .github - Org profile
+Managed dynamically from `repos.json` in [emberlamp/config](https://github.com/emberlamp/config).
+
+## Future: Automation with GitHub Bot
+
+A GitHub bot can be created to:
+- Automatically sync repos list from config to all extensions
+- Trigger updates when `repos.json` changes
+- Run scheduled tasks across all repos
+
+To implement, you would need:
+1. Create a GitHub App or use existing token
+2. Add repository dispatch webhook
+3. Create a workflow that listens for config changes
+
+Would you like to create a bot for this automation?
