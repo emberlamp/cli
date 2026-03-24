@@ -6,19 +6,19 @@
 set -e
 
 ORG="emberlamp"
-REPOS=(
-  "general"
-  "react-template"
-  "swe-agent"
-  "gh-pin-repo"
-  "config"
-  "license"
-  "warnings"
-  "json-repo"
-  "gitkeep"
-  ".github"
-  "cli"
-)
+
+# Fetch repos from config repo
+get_repos() {
+    local raw=$(curl -s "https://raw.githubusercontent.com/$ORG/config/main/repos.json" 2>/dev/null)
+    if [ -z "$raw" ]; then
+        # Fallback to hardcoded list
+        echo "general react-template swe-agent gh-pin-repo config cli license warnings json-repo gitkeep .github"
+        return
+    fi
+    echo "$raw" | grep -o '"[^"]*"' | tr -d '"' | grep -v repos | grep -v org
+}
+
+REPOS=($(get_repos))
 
 # Colors
 RED='\033[0;31m'
