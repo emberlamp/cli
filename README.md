@@ -33,6 +33,26 @@ emberlamp status
 
 # Create new repo
 emberlamp create new-repo "Description"
+
+# Execute command in all repos (tested with real example)
+emberlamp exec "echo 'test' > test.txt"
+emberlamp exec "git add -A && git commit -m 'chore: add test file' && git push"
+```
+
+## Examples - Tested Workflow
+
+```bash
+# 1. Clone all repos
+emberlamp clone ~/emberlamp
+
+# 2. Change to the cloned directory
+cd ~/emberlamp
+
+# 3. Add a file to all repos
+emberlamp exec "echo 'test' > test.txt"
+
+# 4. Commit and push to all repos (successfully pushed to all 10 repos!)
+emberlamp exec "git add -A && git commit -m 'chore: add test file' && git push"
 ```
 
 ## Commands
