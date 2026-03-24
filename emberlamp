@@ -79,6 +79,22 @@ create_repo() {
   log_info "Created $ORG/$name"
 }
 
+# Execute command in all repos
+exec_all() {
+  local cmd="$*"
+  if [ -z "$cmd" ]; then
+    log_error "Please specify a command to run"
+    exit 1
+  fi
+  for repo in "${REPOS[@]}"; do
+    if [ -d "$repo" ]; then
+      echo "=== $repo ==="
+      (cd "$repo" && eval "$cmd")
+    fi
+  done
+  log_info "Executed command in all repos"
+}
+
 # Show status
 status_all() {
   for repo in "${REPOS[@]}"; do
@@ -105,6 +121,7 @@ case "$1" in
     echo "  push                 Push all cloned repos"
     echo "  status               Show status of all repos"
     echo "  create <name> [desc] Create new repo"
+    echo "  exec <command>       Execute command in all repos"
     echo ""
     echo "Examples:"
     echo "  emberlamp list"
@@ -132,6 +149,10 @@ case "$1" in
       exit 1
     fi
     create_repo "$2" "${3:-}"
+    ;;
+  exec)
+    shift
+    exec_all "$@"
     ;;
   *)
     log_error "Unknown command: $1"

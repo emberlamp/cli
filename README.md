@@ -45,6 +45,7 @@ emberlamp create new-repo "Description"
 | `push` | Push all cloned repos |
 | `status` | Show status of all repos |
 | `create <name> [desc]` | Create new repository |
+| `exec <command>` | Execute command in all repos |
 
 ## Repositories Managed
 
