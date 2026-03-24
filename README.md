@@ -51,7 +51,7 @@ cd ~/emberlamp
 # 3. Add a file to all repos
 emberlamp exec "echo 'test' > test.txt"
 
-# 4. Commit and push to all repos (successfully pushed to all 10 repos!)
+# 4. Commit and push to all repos (successfully pushed to all 11 repos!)
 emberlamp exec "git add -A && git commit -m 'chore: add test file' && git push"
 ```
 
@@ -74,6 +74,7 @@ emberlamp exec "git add -A && git commit -m 'chore: add test file' && git push"
 - swe-agent - SWE agent template
 - gh-pin-repo - Pin repo extension
 - config - Config extension
+- cli - Master CLI
 - license - Shared license
 - warnings - Warning messages
 - json-repo - JSON schemas

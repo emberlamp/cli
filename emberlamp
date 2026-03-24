@@ -17,6 +17,7 @@ REPOS=(
   "json-repo"
   "gitkeep"
   ".github"
+  "cli"
 )
 
 # Colors
