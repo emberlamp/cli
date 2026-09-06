@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Coccinella-Labs/cli/main/.github/assets/thumbnail.png" alt="cli" width="100%">
+</p>
+
 # emberlamp
 
 Master CLI to control all Emberlamp repositories.
